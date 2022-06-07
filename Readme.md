@@ -47,3 +47,62 @@ export function Avatar({hasBorder = true, src}) {
 <Avatar src="https://avatars.githubusercontent.com/u/79115354?v=4"/>
 
 ~~~~
+
+* Intl - Api que permite a formatação de data, numero de acordo com o país.
+~~~~js
+  const publishedDateFormated = new Intl.DateTimeFormat('pt-BR', {
+    day: '2-digit',
+    month: 'long',
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(publishedAt)
+~~~~
+
+* date-fns
+* 
+
+### Key no React
+#### Por que única?
+3 momentos em que um componente é renderizado novamente no React.
+
+1. Quando o estado altera;
+2. Quando a propriedade altera;
+3. Quando um componente pai renderiza novamente;
+
+#### Por que não posso usar o índice do array?
+
+Quando alteramos as posições dos indices, o react vai comparar e entender que precisa renderizar todo o código. Sendo assim o uso justificável de um id informativo.
+
+### Recomendações de Código
+Cria variáveis com significado.
+Exemplo dentro do projeto.
+~~~~js
+  const isNewCommentEmpty = newCommentText.length === 0
+
+...
+  //Código sujo
+  <button type="submit" disabled={newCommentText.length === 0}>Publicar</button>
+
+  //Código Limpo, usando a variavel
+  <button type="submit" disabled={isNewCommentEmpty}>Publicar</button>
+~~~~
+
+### Função em React - Forma correta!
+~~~~js
+  //Não fazer, pois ao executar o programa, automaticamente executa a função
+  <button onClick={setLikeCount(likeCount + 1)}>
+
+  //Forma correta, usando arrow function
+  <button onClick={() => setLikeCount(likeCount + 1)}>
+~~~~
+* No projeto esta usando a forma Clean Code
+
+### Closures no React
+Sempre que você for atualizar uma informação, e essa informação depende do valor que tinha anteriormente é sempre bom usar esse padrão de função
+~~~~js
+function handleLikeComment(){
+  setLikeCount((state) => {
+    return state + 1
+  })
+}
+~~~~

@@ -86,11 +86,11 @@ textarea {
 
 .commentForm footer{
   visibility: hidden;
-  max-width: 0;
+  max-height: 0;
 }
 .commentForm:focus-within footer{
   visibility: visible;
-  max-width: none;
+  max-height: none;
 }
 
 .commentForm button[type="submit"] {
@@ -105,8 +105,13 @@ textarea {
   transition: .1s linear;
 }
 
-.commentForm button[type="submit"]:hover {
+.commentForm button[type="submit"]:not(:disabled):hover {
   background-color: var(--green-500);
+}
+
+.commentForm button[type="submit"]:disabled{
+  opacity: .7;
+  cursor: not-allowed;
 }
 
 .commentList {
